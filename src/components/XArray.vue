@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  props: ['modelValue'],
+  props: ["modelValue"],
   data() {
     return {
       internalValue: [],
@@ -21,7 +21,7 @@ export default {
     modelValue: {
       handler(newVal) {
         // todo: fill internalValue from v-model and add an empty element
-        this.internalValue = [...newVal, ''];
+        this.internalValue = [...newVal, ""];
       },
       deep: true,
     },
@@ -31,7 +31,7 @@ export default {
         // todo: form a result without empty elements
         // todo: emit input event with result
         const result = newVal.filter(Boolean);
-        this.$emit('update:modelValue', result);
+        this.$emit("update:modelValue", result);
       },
       deep: true,
     },
@@ -39,7 +39,7 @@ export default {
   // when component is mounted
   mounted() {
     // fill internalValue from v-model and add an empty element
-    this.internalValue = [...this.modelValue, ''];
+    this.internalValue = [...this.modelValue, ""];
   },
 };
 </script>

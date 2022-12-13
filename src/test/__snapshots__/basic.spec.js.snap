@@ -1,0 +1,10 @@
+// Vitest Snapshot v1
+
+exports[`testing the app > should mount 1`] = `
+"<div>
+  <div></div><pre>[
+  \\"one\\",
+  \\"two\\"
+]</pre>
+</div>"
+`;
