@@ -39,6 +39,7 @@ export default {
   // when component is mounted
   mounted() {
     // fill internalValue from v-model and add an empty element
+
     this.internalValue = [...this.modelValue, ""];
   },
 };

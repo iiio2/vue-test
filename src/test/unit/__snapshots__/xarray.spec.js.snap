@@ -1,0 +1,3 @@
+// Vitest Snapshot v1
+
+exports[`xarray component testing > should be mounted 1`] = `"<div></div>"`;
