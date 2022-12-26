@@ -36,11 +36,6 @@ describe("testing XArray", () => {
       props: {
         modelValue: ["one", "two"],
       },
-      data() {
-        return {
-          internalValue: ["one", "two", ""],
-        };
-      },
     });
     const inputLength = wrapper.findAll("input").length;
     const models = wrapper.props().modelValue.length;
