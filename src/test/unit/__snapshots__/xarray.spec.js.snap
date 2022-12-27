@@ -1,9 +1,3 @@
 // Vitest Snapshot v1
 
-exports[`testing XArray > example works as expected (compare the snapshot) 1`] = `"<div><input><input><input></div>"`;
-
-exports[`testing XArray > works as expected 1`] = `"<div><input><input><input></div>"`;
-
-exports[`xarray component testing > should be mounted 1`] = `"<div></div>"`;
-
-exports[`xarray component testing > should expect props 1`] = `"<div></div>"`;
+exports[`XArray > example works as expected (compare the snapshot) 1`] = `"<div><input><input><input></div>"`;
