@@ -35,10 +35,14 @@ describe("XArray", () => {
     const input = wrapper.findAll("input").at(1);
     await input.setValue("new value");
 
-    expect(wrapper.emitted());
+    expect(wrapper.emitted("update:modelValue")[1][0]).toStrictEqual([
+      "a",
+      "new value",
+      "c",
+    ]);
   });
 
-  it("removes input element from array when value is empty", async () => {
+  it("removes element from array when value is empty", async () => {
     const wrapper = mount(XArray, {
       props: {
         modelValue: ["one", "two"],
@@ -48,7 +52,7 @@ describe("XArray", () => {
     await wrapper.vm.$nextTick();
     const input = await wrapper.findAll("input").at(0).setValue("");
 
-    expect(input).toBe(undefined);
+    expect(wrapper.emitted("update:modelValue")[1][0]).toStrictEqual(["two"]);
   });
   it("should be always one extra input shown, so that it is possible to add new values", async () => {
     const wrapper = mount(XArray, {
