@@ -50,7 +50,7 @@ describe("XArray", () => {
     });
 
     await wrapper.vm.$nextTick();
-    const input = await wrapper.findAll("input").at(0).setValue("");
+    await wrapper.findAll("input").at(0).setValue("");
 
     expect(wrapper.emitted("update:modelValue")[1][0]).toStrictEqual(["two"]);
   });
