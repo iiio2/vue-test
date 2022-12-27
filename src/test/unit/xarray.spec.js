@@ -33,9 +33,9 @@ describe("XArray", () => {
     await wrapper.vm.$nextTick();
 
     const input = wrapper.findAll("input").at(1);
-    input.setValue("new value");
+    await input.setValue("new value");
 
-    expect(input.element.value).toBe("new value");
+    expect(wrapper.emitted());
   });
 
   it("removes input element from array when value is empty", async () => {
