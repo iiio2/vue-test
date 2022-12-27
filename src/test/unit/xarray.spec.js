@@ -12,33 +12,73 @@ describe("testing XArray", () => {
     expect(wrapper.props().modelValue).toStrictEqual(["one", "two"]);
   });
 
-  // ######
+  // ##########
 
-  it("should render each string as separate input", () => {
+  it("should render each string as separate input", async () => {
+    // Arrange
+    const testData = {
+      modelValue: ["one", "two"],
+    };
+
     const wrapper = mount(XArray, {
-      props: {
-        modelValue: ["one", "two"],
-      },
-      data() {
-        return {
-          internalValue: ["one", "two", ""],
-        };
-      },
+      props: testData,
     });
 
-    const input = wrapper.findAll("input").at(0);
-    expect(input.exists()).toBe(true);
+    await wrapper.vm.$nextTick();
+    expect(wrapper.findAll("input").length).toBe(3);
   });
 
-  // #####
-  it("should be always one extra input shown, so that it is possible to add new values", () => {
+  // ######
+
+  it("writes back to the array when input value is changed", async () => {
+    const wrapper = mount(XArray, {
+      props: {
+        modelValue: ["a", "b", "c"],
+      },
+    });
+
+    await wrapper.vm.$nextTick();
+
+    const input = wrapper.findAll("input").at(1);
+    input.setValue("new value");
+
+    expect(wrapper.vm.internalValue[1]).toBe("new value");
+  });
+
+  //// ######
+
+  it("removes input element from array when value is empty", async () => {
     const wrapper = mount(XArray, {
       props: {
         modelValue: ["one", "two"],
       },
     });
-    const inputLength = wrapper.findAll("input").length;
-    const models = wrapper.props().modelValue.length;
-    expect(inputLength).toBe(models + 1);
+
+    // set value of input element to empty string
+    await wrapper.vm.$nextTick();
+    const input = wrapper.findAll("input").at(0);
+    input.setValue("");
+    expect(wrapper.findAll("input").length).toBe(2);
+  });
+  // #######
+  it("should be always one extra input shown, so that it is possible to add new values", async () => {
+    const wrapper = mount(XArray, {
+      props: {
+        modelValue: ["one", "two"],
+      },
+    });
+    await wrapper.vm.$nextTick;
+    expect(wrapper.findAll("input").length).toBe(3);
+  });
+  // ######
+  it("example works as expected (compare the snapshot)", async () => {
+    const wrapper = mount(XArray, {
+      props: {
+        modelValue: ["one", "two"],
+      },
+    });
+    await wrapper.vm.$nextTick();
+
+    expect(wrapper.html()).toMatchSnapshot();
   });
 });
