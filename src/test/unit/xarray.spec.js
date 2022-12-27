@@ -1,4 +1,4 @@
-import { mount } from "@vue/test-utils";
+import { mount, shallowMount } from "@vue/test-utils";
 import { describe, expect, it } from "vitest";
 import XArray from "../../components/XArray.vue";
 
@@ -56,9 +56,9 @@ describe("testing XArray", () => {
 
     // set value of input element to empty string
     await wrapper.vm.$nextTick();
-    const input = wrapper.findAll("input").at(0);
-    input.setValue("");
-    expect(wrapper.findAll("input").length).toBe(2);
+    const input = await wrapper.findAll("input").at(0).setValue("");
+
+    expect(input).toBe(undefined);
   });
   // #######
   it("should be always one extra input shown, so that it is possible to add new values", async () => {
