@@ -31,10 +31,9 @@ export default {
         // todo: form a result without empty elements
         // todo: emit input event with result
         const result = newVal.filter(Boolean);
-        console.log(newVal);
-        if (JSON.stringify(newVal) === JSON.stringify(this.modelValue))
+        if (JSON.stringify(result) === JSON.stringify(this.modelValue)) {
           return null;
-        console.log("update:modelValue", result);
+        }
         this.$emit("update:modelValue", result);
       },
       deep: true,

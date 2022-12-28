@@ -35,7 +35,7 @@ describe("XArray", () => {
     const input = wrapper.findAll("input").at(1);
     await input.setValue("new value");
 
-    expect(wrapper.emitted("update:modelValue")[1][0]).toStrictEqual([
+    expect(wrapper.emitted("update:modelValue")[0][0]).toStrictEqual([
       "a",
       "new value",
       "c",
@@ -52,7 +52,7 @@ describe("XArray", () => {
     await wrapper.vm.$nextTick();
     await wrapper.findAll("input").at(0).setValue("");
 
-    expect(wrapper.emitted("update:modelValue")[1][0]).toStrictEqual(["two"]);
+    expect(wrapper.emitted("update:modelValue")[0][0]).toStrictEqual(["two"]);
   });
   it("should be always one extra input shown, so that it is possible to add new values", async () => {
     const wrapper = mount(XArray, {
